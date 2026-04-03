@@ -1,0 +1,323 @@
+:root {
+    --primary: #1E3A8A; /* Navy blue from logo border */
+    --primary-light: #3B82F6; /* Bright sky blue */
+    --secondary: #FBBF24; /* Yellow from the school bus */
+    --accent: #DC2626; /* Bright Red from Admission Board */
+    --background: #38bdf8;
+    --surface: rgba(255, 255, 255, 0.90);
+    --surface-border: rgba(255, 255, 255, 0.6);
+    --text-main: #111827;
+    --text-muted: #4B5563;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    /* We include bg.jpg fallback so user can just drop the image in root directory! */
+    background: url('bg.jpg') no-repeat center center fixed, linear-gradient(180deg, #38bdf8 0%, #e0f2fe 100%);
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+/* Preloader */
+.preloader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(251, 191, 36, 0.3);
+    border-top-color: var(--secondary);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Glassmorphism Container */
+.glass-container {
+    background: var(--surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--surface-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+}
+
+/* School Logo Placeholder */
+.school-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem auto;
+    background: url('logo.png') center/contain no-repeat, white;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    display: block;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
+    border-radius: 12px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-accent {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-accent:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+}
+
+/* Login Page Layout */
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+.brand-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.brand-header h1 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+.brand-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.error-message {
+    color: #DC2626;
+    background: #FEF2F2;
+    padding: 0.85rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    display: none;
+    border: 1px solid #FECACA;
+    font-weight: 500;
+}
+
+/* Dashboard Layout */
+.nav-bar {
+    background: var(--surface);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--surface-border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-brand::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('logo.png') center/contain no-repeat, var(--secondary);
+    border-radius: 50%;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.dashboard-header {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+    border: 1px solid var(--surface-border);
+}
+
+.dashboard-header h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-logout {
+    background: #FEF2F2;
+    color: #DC2626;
+    padding: 0.6rem 1.2rem;
+    width: auto;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    border: 1px solid #FECACA;
+}
+
+.btn-logout:hover {
+    background: #FEE2E2;
+    transform: translateY(-1px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+
+    .user-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .dashboard-container {
+        margin: 1rem auto;
+        padding: 0 1rem;
+    }
+
+    .dashboard-header {
+        padding: 1.5rem 1rem;
+    }
+
+    .dashboard-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .glass-container {
+        padding: 1.5rem 1rem;
+    }
+
+    /* Wrap wide horizontal flex items into column formats for mobile readability */
+    div[id^="view-"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+    
+    div[id^="view-"] > div:last-child {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #stu-att-perc {
+        font-size: 2.5rem !important;
+    }
+}

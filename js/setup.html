@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Setup Admin Account</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+            background: #111;
+            color: #fff;
+        }
+
+        .success {
+            color: #10b981;
+        }
+
+        .error {
+            color: #ef4444;
+        }
+
+        .step {
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+    </style>
+    <!-- Firebase SDK (Compat Version) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+</head>
+
+<body>
+    <h1>Vidya Balvatika - Admin Setup</h1>
+    <div id="log"></div>
+
+    <script>
+        async function createAdmin() {
+            const logDiv = document.getElementById('log');
+            const log = (msg, type = 'normal') => {
+                logDiv.innerHTML += `<div class="step ${type}">> ${msg}</div>`;
+            };
+
+            const email = "admin-01@vidya.edu";
+            const password = "admin-01@9835#";
+
+            log("Starting Admin Setup Process...");
+
+            try {
+                log(`Attempting to create Auth user: ${email}`);
+                const userCredential = await authInstance.createUserWithEmailAndPassword(email, password);
+                const uid = userCredential.user.uid;
+
+                log(`Success! Unique ID generated: ${uid}`, 'success');
+                log(`Writing Role Document to Firestore...`);
+
+                // Save role to firestore
+                await db.collection("users").doc(uid).set({
+                    name: "System Administrator 01",
+                    role: "admin"
+                });
+
+                log(`Success! Document created in "users" collection.`, 'success');
+                log(`✅ SETUP COMPLETE! You can now login to index.html with ${email}`, 'success');
+
+            } catch (err) {
+                log(`Error occurred: ${err.message}`, 'error');
+                log("If the user already exists, please delete it from Firebase Auth and refresh this page.");
+            }
+        }
+
+        createAdmin();
+    </script>
+</body>
+
+</html>
