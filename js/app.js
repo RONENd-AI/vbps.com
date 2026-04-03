@@ -23,7 +23,7 @@ function renderNavbar(user) {
     const roleColors = { admin: '#DC2626', teacher: '#059669', student: '#2563EB' };
     return `
         <nav class="nav-bar">
-            <div class="nav-brand">Vidya Balvatika</div>
+            <div class="nav-brand">Vidya's Balvatika</div>
             <div class="user-controls">
                 <div style="text-align: right; line-height:1.2;">
                     <div style="font-weight:700; font-family:var(--font-heading); color:white; text-shadow:0 1px 2px rgba(0,0,0,0.5);">${user.name}</div>
@@ -40,7 +40,7 @@ function renderLogin() {
         <div class="login-wrapper">
             <div class="glass-container">
                 <div class="brand-header">
-                    <h1>Vidya Balvatika</h1>
+                    <h1>Vidya's Balvatika</h1>
                     <p>Welcome! Please login to your portal.</p>
                 </div>
                 <div id="login-error" class="error-message"></div>
